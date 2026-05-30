@@ -1,0 +1,21 @@
+Distributed Rate Limiter Service
+Copyright 2026 Sparsh Indurkar
+
+This product includes software developed as part of the
+Distributed Rate Limiter Service project.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+This product depends on third-party libraries, each distributed under
+their own licenses, including (but not limited to):
+
+  - Spring Boot, Spring Framework, Spring Data Redis (Apache License 2.0)
+  - Lettuce Redis client (Apache License 2.0)
+  - Micrometer / Prometheus client (Apache License 2.0)
+  - springdoc-openapi (Apache License 2.0)
+  - Project Lombok (MIT License)
+  - JUnit 5, Testcontainers, AssertJ, Mockito, Awaitility (test scope)
