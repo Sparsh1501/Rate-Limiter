@@ -1,5 +1,5 @@
 # ---- Build stage ----
-FROM eclipse-temurin:17-jdk-alpine AS build
+FROM eclipse-temurin:25-jdk-alpine AS build
 WORKDIR /workspace
 
 # Cache Gradle wrapper + dependency metadata first for faster rebuilds.
@@ -12,7 +12,7 @@ COPY src ./src
 RUN ./gradlew clean bootJar -x test --no-daemon
 
 # ---- Runtime stage ----
-FROM eclipse-temurin:17-jre-alpine AS runtime
+FROM eclipse-temurin:25-jre-alpine AS runtime
 WORKDIR /app
 
 # Run as a non-root user.
