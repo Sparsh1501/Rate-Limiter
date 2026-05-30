@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: rate-limiter-service
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: 200ms
+      lettuce:
+        pool:
+          max-active: 50
+          max-idle: 10
+          min-idle: 5
+          max-wait: 100ms
+
+server:
+  port: 8080
+  shutdown: graceful
+
+rate-limiter:
+  default-limit: 100
+  default-window-seconds: 60
+  default-algorithm: SLIDING_WINDOW
+  default-tokens-per-second: 10
+  # Header used to identify the calling merchant
+  merchant-header: X-Merchant-ID
+  # Paths excluded from rate limiting (management/docs endpoints)
+  excluded-paths:
+    - /actuator
+    - /swagger-ui
+    - /v3/api-docs
+    - /api/v1/merchants
+  # Time-to-live for the in-memory config cache (seconds)
+  config-cache-ttl-seconds: 10
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    tags:
+      application: rate-limiter-service
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  level:
+    com.ratelimiter: INFO

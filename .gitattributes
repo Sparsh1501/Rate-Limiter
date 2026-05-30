@@ -1,0 +1,15 @@
+# Normalize line endings on checkin.
+* text=auto eol=lf
+
+# Windows-only scripts keep CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# The Gradle wrapper script must stay LF for the Docker/Linux build.
+gradlew text eol=lf
+
+# Treat the wrapper jar and other binaries as binary.
+*.jar binary
+*.png binary
+*.gif binary
+*.ico binary
